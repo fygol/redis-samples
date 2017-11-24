@@ -4,8 +4,9 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPubSub;
 
 public class PubSub {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         new Thread(new Consumer()).start();
+        Thread.sleep(1000);
         new Thread(new Producer()).start();
     }
 }
@@ -42,5 +43,6 @@ class Consumer extends JedisPubSub implements Runnable {
 
     public void run() {
         redis.subscribe(this, "messages");
+        System.out.println("consumer finished");
     }
 }

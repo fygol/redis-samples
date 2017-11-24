@@ -17,7 +17,7 @@ public class StringTest {
 
     @After
     public void tearDown() throws Exception {
-        redis.close();
+        redis.quit();
     }
 
     @Test
